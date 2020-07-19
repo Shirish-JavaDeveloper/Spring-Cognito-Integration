@@ -1,0 +1,21 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          cognito:
+            client-id: <cognito-app-client-id>
+            client-secret: <cognito-app-client-secret>
+            client-name: Cognito Code Grant
+            provider: cognito
+            scope: openid
+            redirect-uri-template: http://localhost:8080/login/oauth2/code/cognito
+            redirect-uri: http://localhost:8080/login/oauth2/code/cognito
+            authorization-grant-type: authorization_code
+        provider:
+          cognito:
+            authorization-uri: https://<domain_name>.auth.<region_name>.amazoncognito.com/oauth2/authorize
+            token-uri: https://<domain_name>.auth.<region_name>.amazoncognito.com/oauth2/token
+            user-info-uri: https://<domain_name>.auth.<region_name>.amazoncognito.com/oauth2/userInfo
+            jwk-set-uri: https://cognito-idp.<region_name>.amazonaws.com/<user_pool_id>/.well-known/jwks.json
+            user-name-attribute: cognito:username
